@@ -54,7 +54,9 @@ class DashboardController extends Controller
             ->limit(5)
             ->get();
 
-        return view('hr.dashboard', compact('stats', 'recentApplications'));
+        $announcements = Announcement::latest()->limit(5)->get();
+
+        return view('hr.dashboard', compact('stats', 'recentApplications', 'announcements'));
     }
 
     private function supervisorDashboard(): View

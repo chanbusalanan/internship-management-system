@@ -11,6 +11,12 @@ describe('Authentication', function () {
             ->assertSee('Sign In');
     });
 
+    it('shows the login page from the home route', function () {
+        $this->get(route('home'))
+            ->assertSuccessful()
+            ->assertSee('Sign In');
+    });
+
     it('shows the registration page', function () {
         $this->get(route('register'))
             ->assertSuccessful()

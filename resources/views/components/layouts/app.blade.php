@@ -7,23 +7,23 @@
     <title>{{ isset($pageTitle) ? $pageTitle . ' — ' : '' }}{{ config('app.name', 'Internship Management System') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="h-full">
-    <div class="min-h-full flex">
+<body class="h-full bg-slate-100 text-slate-900">
+    <div class="min-h-full bg-[radial-gradient(circle_at_top_left,_rgba(37,99,235,0.12),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(14,165,233,0.10),_transparent_25%)]">
         @auth
-        <aside class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-800 text-white flex flex-col transition-transform duration-300 lg:translate-x-0 -translate-x-full" id="sidebar">
-            <div class="flex items-center gap-3 px-5 py-5 border-b border-slate-700">
-                <div class="w-10 h-10 rounded-lg bg-sky-500 flex items-center justify-center shrink-0">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <aside class="fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-slate-800/70 bg-slate-950/95 text-white shadow-2xl shadow-slate-950/30 transition-transform duration-300 lg:translate-x-0 -translate-x-full" id="sidebar">
+            <div class="flex items-center gap-3 border-b border-white/10 px-5 py-5">
+                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-cyan-400 shadow-lg shadow-sky-500/20">
+                    <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A24.626 24.626 0 0 1 12 20.904a24.626 24.626 0 0 1 8.231-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658 8.09M4.26 10.147a50.636 50.636 0 0 1 2.658-8.09m0 0a50.717 50.717 0 0 1 11.318-2.741M6.064 10.147a50.717 50.717 0 0 1 11.318 2.741M12 20.904c-2.583-1.564-4.5-3.566-5.7-5.81a24.626 24.626 0 0 1 11.4 0c-1.2 2.244-3.117 4.246-5.7 5.81Z"/>
                     </svg>
                 </div>
                 <div class="min-w-0">
-                    <p class="text-sm font-semibold leading-tight truncate">Internship MS</p>
-                    <p class="text-xs text-slate-400 truncate">{{ auth()->user()->role->role_name }}</p>
+                    <p class="truncate text-sm font-semibold leading-tight">Internship MS</p>
+                    <p class="truncate text-xs text-slate-400">{{ auth()->user()->role->role_name }}</p>
                 </div>
             </div>
 
-            <nav class="flex-1 px-3 py-4 overflow-y-auto space-y-1">
+            <nav class="flex-1 space-y-1 overflow-y-auto px-3 py-4">
                 @php
                     $role = auth()->user()->role->role_name;
                     $currentRoute = request()->route()->getName();
@@ -71,7 +71,7 @@
                             || $currentRoute === $item['route'];
                     @endphp
                     <a href="{{ route($item['route']) }}"
-                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ $isActive ? 'bg-sky-600 text-white' : 'text-slate-300 hover:bg-slate-700 hover:text-white' }}">
+                       class="flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition-all {{ $isActive ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/20' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
                         @switch($item['icon'])
                             @case('home')<svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.5a.75.75 0 0 0 .75.75h4.5a.75.75 0 0 0 .75-.75V15a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 0 .75.75h4.5a.75.75 0 0 0 .75-.75V9.75M8.25 21h8.25"/></svg>@break
                             @case('user')<svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>@break
@@ -90,19 +90,19 @@
                 @endforeach
             </nav>
 
-            <div class="px-3 py-4 border-t border-slate-700">
-                <div class="flex items-center gap-3 px-3 py-2">
-                    <div class="w-9 h-9 rounded-full bg-slate-600 flex items-center justify-center text-sm font-semibold shrink-0">
+            <div class="border-t border-white/10 px-3 py-4">
+                <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/10 px-3 py-2.5">
+                    <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-500 to-cyan-400 text-sm font-semibold text-white">
                         {{ strtoupper(auth()->user()->first_name[0] . auth()->user()->last_name[0]) }}
                     </div>
                     <div class="min-w-0 flex-1">
-                        <p class="text-sm font-medium truncate">{{ auth()->user()->full_name }}</p>
-                        <p class="text-xs text-slate-400 truncate">{{ auth()->user()->email }}</p>
+                        <p class="truncate text-sm font-medium">{{ auth()->user()->full_name }}</p>
+                        <p class="truncate text-xs text-slate-400">{{ auth()->user()->email }}</p>
                     </div>
                 </div>
                 <form action="{{ route('logout') }}" method="POST" class="mt-2">
                     @csrf
-                    <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+                    <button type="submit" class="flex w-full items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">
                         <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"/></svg>
                         Logout
                     </button>
@@ -110,32 +110,32 @@
             </div>
         </aside>
 
-        <div class="flex-1 lg:ml-64 flex flex-col min-w-0">
-            <header class="bg-white border-b border-gray-200 sticky top-0 z-30 lg:hidden">
+        <div class="flex min-w-0 flex-1 flex-col lg:ml-72">
+            <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl lg:hidden">
                 <div class="flex items-center justify-between px-4 py-3">
-                    <button type="button" onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')" class="p-2 rounded-lg text-gray-600 hover:bg-gray-100">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+                    <button type="button" onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')" class="rounded-2xl p-2 text-slate-600 transition hover:bg-slate-100">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
                     </button>
-                    <span class="font-semibold text-gray-800">Internship MS</span>
+                    <span class="font-semibold text-slate-800">Internship MS</span>
                     <div class="w-10"></div>
                 </div>
             </header>
 
             <main class="flex-1 p-4 sm:p-6 lg:p-8">
                 @if (session('success'))
-                    <div class="mb-4 rounded-lg bg-emerald-50 border border-emerald-200 px-4 py-3 text-sm text-emerald-800 flex items-center gap-2">
+                    <div class="mb-4 flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
                         <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
                         {{ session('success') }}
                     </div>
                 @endif
                 @if (session('error'))
-                    <div class="mb-4 rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-800 flex items-center gap-2">
+                    <div class="mb-4 flex items-center gap-2 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
                         <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
                         {{ session('error') }}
                     </div>
                 @endif
                 @if ($errors->any())
-                    <div class="mb-4 rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-800">
+                    <div class="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
                         <p class="font-medium mb-1">Please fix the following:</p>
                         <ul class="list-disc list-inside space-y-0.5">
                             @foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach
@@ -143,7 +143,9 @@
                     </div>
                 @endif
 
-                {{ $slot }}
+                <div class="rounded-[28px] border border-slate-200/70 bg-white/80 p-4 shadow-[0_30px_70px_-30px_rgba(15,23,42,0.35)] backdrop-blur-xl sm:p-6 lg:p-8">
+                    {{ $slot }}
+                </div>
             </main>
         </div>
         @endauth

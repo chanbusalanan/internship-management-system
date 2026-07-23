@@ -26,7 +26,7 @@ use App\Http\Controllers\Supervisor\EvaluationController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::get('/', fn () => redirect()->route('login'));
+    Route::get('/', [LoginController::class, 'showLoginForm'])->name('home');
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [LoginController::class, 'login']);
     Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
